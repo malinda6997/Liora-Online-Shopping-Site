@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initMobileMenu();
   initAnimations();
   initProductOverlays();
+  initCountdownTimer();
 });
 
 // Hero Slider Functionality
@@ -385,3 +386,114 @@ window.addEventListener("scroll", function () {
     header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
   }
 });
+
+// Countdown Timer Functionality
+function initCountdownTimer() {
+  const countdownContainer = document.getElementById("countdown-timer");
+  if (!countdownContainer) return;
+
+  // Get end date from data attribute or default to 7 days from now
+  let endDate = countdownContainer.getAttribute("data-end-date");
+  if (!endDate) {
+    const defaultEndDate = new Date();
+    defaultEndDate.setDate(defaultEndDate.getDate() + 7);
+    endDate = defaultEndDate.toISOString();
+  }
+
+  const endDateTime = new Date(endDate).getTime();
+
+  // Elements to update
+  const daysElement = document.getElementById("days-value");
+  const hoursElement = document.getElementById("hours-value");
+  const minutesElement = document.getElementById("minutes-value");
+  const secondsElement = document.getElementById("seconds-value");
+
+  // Animation elements
+  const timeAnimations = document.querySelectorAll(".time-animation");
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endDateTime - now;
+
+    if (distance < 0) {
+      // Countdown finished
+      daysElement.textContent = "00";
+      hoursElement.textContent = "00";
+      minutesElement.textContent = "00";
+      secondsElement.textContent = "00";
+
+      // Stop the countdown
+      clearInterval(countdownInterval);
+      return;
+    }
+
+    // Calculate time units
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Add leading zeros
+    const formatNumber = (num) => (num < 10 ? `0${num}` : num);
+
+    // Update the elements
+    daysElement.innerHTML =
+      formatNumber(days) + '<span class="time-animation"></span>';
+    hoursElement.innerHTML =
+      formatNumber(hours) + '<span class="time-animation"></span>';
+    minutesElement.innerHTML =
+      formatNumber(minutes) + '<span class="time-animation"></span>';
+    secondsElement.innerHTML =
+      formatNumber(seconds) + '<span class="time-animation"></span>';
+
+    // Add animation for seconds
+    const secondsAnimation = secondsElement.querySelector(".time-animation");
+    if (secondsAnimation) {
+      secondsAnimation.style.animation = "none";
+      setTimeout(() => {
+        secondsAnimation.style.animation = "countdown 1s linear infinite";
+      }, 10);
+    }
+
+    // Add animation for minutes when seconds roll over
+    if (seconds === 59) {
+      const minutesAnimation = minutesElement.querySelector(".time-animation");
+      if (minutesAnimation) {
+        minutesAnimation.style.animation = "none";
+        setTimeout(() => {
+          minutesAnimation.style.animation = "countdown 60s linear infinite";
+        }, 10);
+      }
+    }
+
+    // Add animation for hours when minutes roll over
+    if (seconds === 59 && minutes === 59) {
+      const hoursAnimation = hoursElement.querySelector(".time-animation");
+      if (hoursAnimation) {
+        hoursAnimation.style.animation = "none";
+        setTimeout(() => {
+          hoursAnimation.style.animation = "countdown 3600s linear infinite";
+        }, 10);
+      }
+    }
+
+    // Add animation for days when hours roll over
+    if (seconds === 59 && minutes === 59 && hours === 23) {
+      const daysAnimation = daysElement.querySelector(".time-animation");
+      if (daysAnimation) {
+        daysAnimation.style.animation = "none";
+        setTimeout(() => {
+          daysAnimation.style.animation = "countdown 86400s linear infinite";
+        }, 10);
+      }
+    }
+  }
+
+  // Initial call
+  updateCountdown();
+
+  // Update the countdown every second
+  const countdownInterval = setInterval(updateCountdown, 1000);
+}
