@@ -6,9 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
   initAnimations();
   initProductOverlays();
   initCountdownTimer();
+  enhanceProductCards();
+  convertPricesToLKR();
 });
 
-// Hero Slider Functionality
+// Modern Hero Slider Functionality with Advanced Animations
 function initSlider() {
   const slides = document.querySelectorAll(".slide");
   const dots = document.querySelectorAll(".dot");
@@ -16,6 +18,10 @@ function initSlider() {
   const nextBtn = document.querySelector(".next");
   let currentSlide = 0;
   let slideInterval;
+  const slideDuration = 6000; // 6 seconds per slide
+
+  // Reset all progress bars initially
+  resetProgressBars();
 
   // Start automatic slider
   startSlider();
@@ -24,12 +30,14 @@ function initSlider() {
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener("click", () => {
       clearInterval(slideInterval);
+      resetProgressBars();
       changeSlide(currentSlide - 1);
       startSlider();
     });
 
     nextBtn.addEventListener("click", () => {
       clearInterval(slideInterval);
+      resetProgressBars();
       changeSlide(currentSlide + 1);
       startSlider();
     });
@@ -38,17 +46,50 @@ function initSlider() {
   // Initialize slider dots
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
-      clearInterval(slideInterval);
-      changeSlide(index);
-      startSlider();
+      if (currentSlide !== index) {
+        clearInterval(slideInterval);
+        resetProgressBars();
+        changeSlide(index);
+        startSlider();
+      }
     });
   });
 
+  // Function to reset progress bars
+  function resetProgressBars() {
+    dots.forEach((dot) => {
+      const progressBar = dot.querySelector(".dot-progress");
+      if (progressBar) {
+        progressBar.style.transition = "none";
+        progressBar.style.width = "0";
+      }
+    });
+  }
+
+  // Function to animate the current progress bar
+  function animateProgressBar(index) {
+    const currentDot = dots[index];
+    if (currentDot) {
+      const progressBar = currentDot.querySelector(".dot-progress");
+      if (progressBar) {
+        // Force a reflow to ensure the transition works correctly
+        void progressBar.offsetWidth;
+        progressBar.style.transition = `width ${slideDuration}ms linear`;
+        progressBar.style.width = "100%";
+      }
+    }
+  }
+
   // Function to start automatic slider
   function startSlider() {
+    // Animate the progress bar for the current slide
+    animateProgressBar(currentSlide);
+
     slideInterval = setInterval(() => {
+      resetProgressBars();
       changeSlide(currentSlide + 1);
-    }, 5000);
+      animateProgressBar(currentSlide);
+    }, slideDuration);
   }
 
   // Function to change slide
@@ -56,6 +97,14 @@ function initSlider() {
     // Reset all slides and dots
     slides.forEach((slide) => {
       slide.classList.remove("active");
+
+      // Reset animation elements
+      const animElements = slide.querySelectorAll(
+        ".animate-text, .animate-btn, .subtitle"
+      );
+      animElements.forEach((elem) => {
+        elem.style.opacity = "0";
+      });
     });
 
     dots.forEach((dot) => {
@@ -74,6 +123,33 @@ function initSlider() {
     // Activate current slide and dot
     slides[currentSlide].classList.add("active");
     dots[currentSlide].classList.add("active");
+
+    // Reset and replay animations for the current slide
+    const currentAnimElements = slides[currentSlide].querySelectorAll(
+      ".animate-text, .animate-btn, .subtitle"
+    );
+    currentAnimElements.forEach((elem) => {
+      elem.style.animation = "none";
+      void elem.offsetHeight; // Force reflow
+
+      // Restore the original animation
+      if (elem.classList.contains("animate-text")) {
+        elem.style.animation = "fadeInUp 0.8s ease forwards";
+      } else if (elem.classList.contains("subtitle")) {
+        elem.style.animation = "fadeInLeft 0.8s ease forwards";
+      } else if (elem.classList.contains("animate-btn")) {
+        elem.style.animation = "fadeInUp 0.8s ease forwards";
+      }
+
+      // Re-apply delays
+      if (elem.classList.contains("delay-1")) {
+        elem.style.animationDelay = "0.2s";
+      } else if (elem.classList.contains("delay-2")) {
+        elem.style.animationDelay = "0.4s";
+      } else if (elem.classList.contains("delay-3")) {
+        elem.style.animationDelay = "0.6s";
+      }
+    });
   }
 }
 
@@ -496,4 +572,103 @@ function initCountdownTimer() {
 
   // Update the countdown every second
   const countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// Enhanced Product Card Interactivity
+function enhanceProductCards() {
+  const productCards = document.querySelectorAll(".product-card");
+
+  productCards.forEach((card) => {
+    // Add subtle tilt effect on mouse movement
+    card.addEventListener("mousemove", function (e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left; // x position within the element
+      const y = e.clientY - rect.top; // y position within the element
+
+      // Calculate the tilt based on cursor position
+      const xTilt = (x / rect.width - 0.5) * 4; // Max tilt of 4 degrees
+      const yTilt = (y / rect.height - 0.5) * -4; // Inverse for correct tilt direction
+
+      // Apply the tilt effect with transform
+      this.style.transform = `translateY(-8px) perspective(1000px) rotateX(${yTilt}deg) rotateY(${xTilt}deg)`;
+    });
+
+    // Reset transform when mouse leaves
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(-8px)";
+
+      // Add a subtle bounce effect when mouse leaves
+      setTimeout(() => {
+        this.style.transform = "translateY(-4px)";
+      }, 100);
+
+      setTimeout(() => {
+        this.style.transform = "translateY(-8px)";
+      }, 200);
+
+      setTimeout(() => {
+        this.style.transform = "translateY(-5px)";
+      }, 300);
+
+      setTimeout(() => {
+        this.style.transform = "translateY(-8px)";
+      }, 400);
+    });
+
+    // Add touch functionality for mobile devices
+    card.addEventListener("touchstart", function () {
+      this.style.transform = "translateY(-5px)";
+    });
+
+    card.addEventListener("touchend", function () {
+      this.style.transform = "translateY(-8px)";
+
+      setTimeout(() => {
+        this.style.transform = "translateY(0)";
+      }, 300);
+    });
+  });
+}
+
+// Function to convert USD prices to LKR (under 5000)
+function convertPricesToLKR() {
+  const priceElements = document.querySelectorAll(".price");
+  const originalPriceElements = document.querySelectorAll(".original-price");
+
+  // Exchange rate (fictional for this example - keeping prices under LKR 5000)
+  // Let's use a rate that ensures most prices will be under 5000 LKR
+  // For example, if we use 50 as an exchange rate, a $49.99 would be LKR 2499.50
+  const exchangeRate = 50;
+
+  // Function to convert price and ensure it's under LKR 5000
+  const convertPrice = (priceText) => {
+    // Extract numeric value from price string (removing $ sign)
+    const priceValue = parseFloat(priceText.replace("$", ""));
+
+    // Convert to LKR
+    let lkrPrice = priceValue * exchangeRate;
+
+    // Ensure price is under LKR 5000
+    if (lkrPrice >= 5000) {
+      // Apply a discount to bring it under 5000
+      lkrPrice = Math.min(4999, lkrPrice * 0.8);
+    }
+
+    // Format with commas and return
+    return "LKR " + lkrPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  // Update regular prices
+  priceElements.forEach((element) => {
+    const originalPrice = element.textContent;
+    element.textContent = convertPrice(originalPrice);
+    element.setAttribute("data-original-price", originalPrice);
+  });
+
+  // Update original/discounted prices if any
+  originalPriceElements.forEach((element) => {
+    const originalPrice = element.textContent;
+    element.textContent = convertPrice(originalPrice);
+    element.setAttribute("data-original-price", originalPrice);
+  });
 }
