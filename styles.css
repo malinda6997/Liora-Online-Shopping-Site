@@ -1508,6 +1508,11 @@ header {
         display: block;
     }
     
+    /* Hide slider arrow buttons on mobile */
+    .slider-controls {
+        display: none;
+    }
+    
     .product-card {
         border-radius: 14px;
     }
@@ -1641,6 +1646,11 @@ header {
 @media (max-width: 576px) {
     .promotions-section {
         padding: 60px 0;
+    }
+    
+    /* Ensure slider controls remain hidden on smaller screens */
+    .slider-controls {
+        display: none;
     }
     
     .product-image {
