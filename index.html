@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub - Modern Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/Logo.png" alt="StyleHub Logo" class="logo">
+            <h1>StyleHub</h1>
+        </div>
+        <div class="menu-toggle">
+            <img src="assets/menu.png" alt="Menu" class="menu-icon">
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#new-arrivals">New Arrivals</a></li>
+                <li class="dropdown">
+                    <a href="#categories">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#mens">Men's Collection</a>
+                        <a href="#womens">Women's Collection</a>
+                        <a href="#kids">Kids' Collection</a>
+                    </div>
+                </li>
+                <li><a href="#promotions">Promotions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <a href="#search"><i class="fas fa-search"></i></a>
+            <a href="#account"><i class="fas fa-user"></i></a>
+            <a href="#cart"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        </div>
+    </header>
+
+    <!-- Hero Section with Slider -->
+    <section class="hero-section" id="home">
+        <div class="slider">
+            <div class="slide active">
+                <img src="assets/Header1.jpg" alt="Fashion Collection">
+                <div class="slide-content">
+                    <h2>Fall Collection 2025</h2>
+                    <p>Discover the latest trends in fashion</p>
+                    <a href="#new-arrivals" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="assets/Header2.jpg" alt="Fashion Collection">
+                <div class="slide-content">
+                    <h2>Premium Quality</h2>
+                    <p>Exclusive designs for every occasion</p>
+                    <a href="#promotions" class="btn">View Offers</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Shop by Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="location.href='#mens'">
+                    <img src="assets/mens/Product1.jpeg" alt="Men's Fashion">
+                    <div class="category-title">Men's Fashion</div>
+                </div>
+                <div class="category-card" onclick="location.href='#womens'">
+                    <img src="assets/Women/Product1.jpeg" alt="Women's Fashion">
+                    <div class="category-title">Women's Fashion</div>
+                </div>
+                <div class="category-card" onclick="location.href='#kids'">
+                    <img src="assets/Kids/Product1.jpeg" alt="Kids' Fashion">
+                    <div class="category-title">Kids' Fashion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="products-section" id="new-arrivals">
+        <div class="container">
+            <h2 class="section-title">New Arrivals</h2>
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="mens">Men's</button>
+                <button class="filter-btn" data-filter="womens">Women's</button>
+                <button class="filter-btn" data-filter="kids">Kids'</button>
+            </div>
+            <div class="products-grid">
+                <!-- Men's Products -->
+                <div class="product-card" data-category="mens">
+                    <div class="product-image">
+                        <span class="discount-tag">New</span>
+                        <img src="assets/Product(Mens)/WhatsApp Image 2025-09-13 at 4.12.27 PM.jpeg" alt="Men's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Cotton Shirt</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$49.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="mens">
+                    <div class="product-image">
+                        <span class="discount-tag">New</span>
+                        <img src="assets/Product(Mens)/WhatsApp Image 2025-09-13 at 4.12.28 PM.jpeg" alt="Men's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Denim Jeans</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$69.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Women's Products -->
+                <div class="product-card" data-category="womens">
+                    <div class="product-image">
+                        <span class="discount-tag">New</span>
+                        <img src="assets/Women/Product2.jpeg" alt="Women's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Elegant Summer Dress</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$79.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Kids Products -->
+                <div class="product-card" data-category="kids">
+                    <div class="product-image">
+                        <span class="discount-tag">New</span>
+                        <img src="assets/Kids/Product3.jpeg" alt="Kids' Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Colorful Kids T-shirt</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$29.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="#" class="btn">View All New Arrivals</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Men's Collection Section -->
+    <section class="products-section" id="mens">
+        <div class="container">
+            <h2 class="section-title">Men's Collection</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="discount-tag">-20%</span>
+                        <img src="assets/mens/Product1.jpeg" alt="Men's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Casual Linen Shirt</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="original-price">$59.99</span>
+                            <span class="price">$47.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/mens/Product2.jpeg" alt="Men's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Business Formal Shirt</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$54.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/mens/Product3.jpeg" alt="Men's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sports Track Pants</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(3.5)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$39.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/Product(Mens)/WhatsApp Image 2025-09-13 at 4.12.29 PM.jpeg" alt="Men's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Jacket</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$89.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="low-stock">Low Stock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="#" class="btn">View All Men's Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Women's Collection Section -->
+    <section class="products-section" id="womens">
+        <div class="container">
+            <h2 class="section-title">Women's Collection</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/Women/Product1.jpeg" alt="Women's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Summer Floral Dress</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$65.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="discount-tag">-15%</span>
+                        <img src="assets/Women/Product2.jpeg" alt="Women's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Handbag</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="original-price">$129.99</span>
+                            <span class="price">$110.49</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/Women/Product3.jpeg" alt="Women's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Casual Denim Jacket</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(3.5)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$74.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/Women/Product1.jpeg" alt="Women's Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Elegant Evening Gown</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$149.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="low-stock">Low Stock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="#" class="btn">View All Women's Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kids Collection Section -->
+    <section class="products-section" id="kids">
+        <div class="container">
+            <h2 class="section-title">Kids' Collection</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/Kids/Product1.jpeg" alt="Kids' Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kids Cartoon T-shirt</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$24.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="discount-tag">-10%</span>
+                        <img src="assets/Kids/Product2.jpeg" alt="Kids' Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Children's Denim Overalls</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="original-price">$39.99</span>
+                            <span class="price">$35.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/Kids/Product3.jpeg" alt="Kids' Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kids Winter Jacket</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$49.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="in-stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/Kids/Product1.jpeg" alt="Kids' Product">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kids School Uniform</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(3.5)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$34.99</span>
+                        </div>
+                        <div class="product-availability">
+                            <span class="out-of-stock">Out of Stock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="#" class="btn">View All Kids' Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section class="promotions-section" id="promotions">
+        <div class="container">
+            <h2 class="section-title">Special Offers & Promotions</h2>
+            <div class="promotions-grid">
+                <div class="promotion-card">
+                    <div class="promotion-content">
+                        <h3>Season End Sale</h3>
+                        <p>Get up to 50% off on selected items</p>
+                        <span class="promo-code">Use Code: SEASON50</span>
+                        <a href="#" class="btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <div class="promotion-content">
+                        <h3>Buy One Get One Free</h3>
+                        <p>On all t-shirts and casual wear</p>
+                        <span class="promo-code">Use Code: BOGOF</span>
+                        <a href="#" class="btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <div class="promotion-content">
+                        <h3>New Customer Special</h3>
+                        <p>20% off on your first purchase</p>
+                        <span class="promo-code">Use Code: WELCOME20</span>
+                        <a href="#" class="btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on new arrivals and special offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>StyleHub</h3>
+                    <p>Your one-stop destination for modern fashion and style. We offer high-quality clothing for men, women, and kids at affordable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#new-arrivals">New Arrivals</a></li>
+                        <li><a href="#mens">Men's Collection</a></li>
+                        <li><a href="#womens">Women's Collection</a></li>
+                        <li><a href="#kids">Kids' Collection</a></li>
+                        <li><a href="#promotions">Promotions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Fashion Street, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@stylehub.com</li>
+                        <li><i class="fas fa-clock"></i> Monday-Friday: 9am-6pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StyleHub. All Rights Reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
