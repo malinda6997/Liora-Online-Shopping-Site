@@ -123,6 +123,7 @@ header {
     font-weight: 700;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -811,6 +812,14 @@ footer {
     .slide-content h2 {
         font-size: 36px;
     }
+    
+    .product-card {
+        margin-bottom: 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -841,7 +850,7 @@ footer {
     }
     
     .header-icons {
-        gap: 15px;
+        display: none;
     }
     
     .slide-content {
@@ -913,6 +922,7 @@ footer {
     
     .section-title {
         font-size: 24px;
+        margin-bottom: 30px;
     }
     
     .products-grid,
@@ -923,11 +933,55 @@ footer {
     
     .filter-tabs {
         gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .filter-btn {
         padding: 8px 15px;
         font-size: 12px;
+        margin-bottom: 5px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-column {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .footer-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .product-image {
+        height: 200px;
+    }
+    
+    .newsletter-form input {
+        padding: 12px;
+    }
+    
+    .contact-info li {
+        justify-content: center;
+    }
+    
+    .slider-controls button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
     }
 }
 
