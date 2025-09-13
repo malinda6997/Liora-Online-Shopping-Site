@@ -267,8 +267,9 @@ function initMobileMenu() {
   }
 }
 
-// Initialize Animations on Scroll
+// Initialize Modern Animations on Scroll
 function initAnimations() {
+  // Original animations - keeping for backward compatibility
   const animatedElements = document.querySelectorAll(
     ".section-title, .product-card, .category-card, .promotion-card"
   );
@@ -294,6 +295,11 @@ function initAnimations() {
       threshold: 0.1,
     }
   );
+
+  // Initialize modern scroll animations
+  initScrollProgressBar();
+  initBackToTopButton();
+  prepareScrollAnimations();
 
   animatedElements.forEach((element) => {
     observer.observe(element);
@@ -671,4 +677,95 @@ function convertPricesToLKR() {
     element.textContent = convertPrice(originalPrice);
     element.setAttribute("data-original-price", originalPrice);
   });
+}
+
+// Prepare elements for scroll animations by adding appropriate classes
+function prepareScrollAnimations() {
+  // Add scroll animation classes to elements
+  const elementsToAnimate = [
+    { selector: ".section-title", animation: "scroll-slide-left" },
+    { selector: ".product-info h3", animation: "scroll-slide-up" },
+    {
+      selector: ".categories-grid .category-card",
+      animation: "scroll-fade-in",
+    },
+    { selector: ".offer-container", animation: "scroll-slide-right" },
+    { selector: ".newsletter-content", animation: "scroll-bounce-in" },
+    { selector: ".footer-nav", animation: "scroll-slide-up" },
+    { selector: ".info-item", animation: "scroll-fade-in" },
+    { selector: ".footer-brand", animation: "scroll-slide-up" },
+  ];
+
+  elementsToAnimate.forEach((item) => {
+    const elements = document.querySelectorAll(item.selector);
+    elements.forEach((el, index) => {
+      el.classList.add("scroll-animation", item.animation);
+
+      // Add staggered delays for elements that appear in groups
+      if (
+        ["product-card", "category-card", "info-item", "footer-nav"].some(
+          (cls) => el.classList.contains(cls)
+        )
+      ) {
+        const delayClass = `delay-${(index % 5) * 100}`;
+        el.classList.add(delayClass);
+      }
+    });
+  });
+
+  // Create scroll observer
+  const animatedElements = document.querySelectorAll(".scroll-animation");
+  const scrollObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animated");
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px",
+    }
+  );
+
+  animatedElements.forEach((el) => scrollObserver.observe(el));
+}
+
+// Initialize scroll progress bar
+function initScrollProgressBar() {
+  const progressBar = document.querySelector(".scroll-progress-bar");
+
+  if (progressBar) {
+    window.addEventListener("scroll", () => {
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (window.pageYOffset / totalHeight) * 100;
+      progressBar.style.width = `${progress}%`;
+    });
+  }
+}
+
+// Initialize back to top button
+function initBackToTopButton() {
+  const backToTopButton = document.querySelector(".back-to-top");
+
+  if (backToTopButton) {
+    // Show button when scrolled down
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add("visible");
+      } else {
+        backToTopButton.classList.remove("visible");
+      }
+    });
+
+    // Scroll to top when clicked
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
 }
