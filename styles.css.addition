@@ -1,0 +1,11 @@
+/* Menu back button styling */
+.menu-back {
+    display: none; /* Hidden by default */
+}
+
+@media (min-width: 769px) {
+    /* Always hide on desktop */
+    .menu-back {
+        display: none !important;
+    }
+}

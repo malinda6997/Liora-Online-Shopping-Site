@@ -131,7 +131,7 @@ function initMobileMenu() {
       }
     });
 
-    // Add back button to mobile menu
+    // Add back button to mobile menu - only for screens <= 768px
     if (window.innerWidth <= 768) {
       const backBtn = document.createElement("div");
       backBtn.className = "menu-back";
@@ -141,6 +141,20 @@ function initMobileMenu() {
       backBtn.style.right = "20px";
       backBtn.style.fontSize = "24px";
       backBtn.style.cursor = "pointer";
+      backBtn.style.display = "none"; // Hide by default
+
+      // Only show on mobile view
+      const showHideBackBtn = () => {
+        if (window.innerWidth <= 768) {
+          backBtn.style.display = "block"; // Show on mobile
+        } else {
+          backBtn.style.display = "none"; // Hide on desktop
+        }
+      };
+
+      // Run initially and add resize listener
+      showHideBackBtn();
+      window.addEventListener("resize", showHideBackBtn);
 
       navigation.prepend(backBtn);
 
