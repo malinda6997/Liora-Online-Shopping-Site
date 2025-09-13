@@ -1481,6 +1481,10 @@ header {
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .footer-top .container {
+        flex-direction: column;
+    }
     
     .newsletter-section {
         padding: 70px 0;
@@ -1606,10 +1610,22 @@ header {
     
     .newsletter-form {
         flex-direction: column;
+        width: 90%;
+        max-width: 100%;
+    }
+    
+    .newsletter-form .input-group {
+        width: 100%;
+    }
+    
+    .newsletter-form input {
+        width: 100%;
     }
     
     .newsletter-form .btn {
         align-self: center;
+        margin-top: 10px;
+        width: 100%;
     }
     
     .footer-bottom {
@@ -1641,6 +1657,26 @@ header {
         font-size: 15px;
     }
     
+    /* Enhanced footer newsletter for small mobile screens */
+    .footer-subscribe {
+        height: 55px;
+        margin: 15px 0;
+    }
+    
+    .footer-subscribe input {
+        font-size: 16px;
+        padding: 12px 15px;
+        width: calc(100% - 65px);
+    }
+    
+    .footer-subscribe button {
+        width: 65px;
+    }
+    
+    .footer-newsletter h3 {
+        font-size: 18px;
+    }
+    
     .price {
         font-size: 17px;
     }
@@ -1649,24 +1685,62 @@ header {
         border-radius: 12px;
     }
     
+    /* Footer mobile fixes */
+    .footer-brand {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .footer-nav-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 25px;
+    }
+    
+    .footer-nav {
+        width: 100%;
+    }
+    
+    .footer-top .container {
+        flex-direction: column;
+    }
+    
+    .store-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
     /* Fix for footer newsletter in mobile view */
     .footer-subscribe {
-        flex-direction: column;
-        height: auto;
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        max-width: 100%;
+        width: 100%;
+        margin-top: 10px;
     }
     
     .footer-subscribe input {
-        width: 100%;
-        border-radius: 6px;
-        margin-bottom: 10px;
-        padding: 12px 15px;
-        height: 45px;
+        flex: 1;
+        border-radius: 6px 0 0 6px;
+        padding: 10px 15px;
+        font-size: 16px;
+        height: 100%;
+        min-width: 0; /* Prevents overflow */
+        width: calc(100% - 60px); /* Ensures the input doesn't push button out */
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .footer-subscribe button {
-        width: 100%;
-        border-radius: 6px;
-        height: 45px;
+        width: 60px;
+        border-radius: 0 6px 6px 0;
+        height: 100%;
+        flex-shrink: 0; /* Prevents button from shrinking */
+        position: relative; /* Changed from absolute for better layout */
+        background-color: var(--primary-color);
     }
     
     .offer-content h2 {
@@ -2218,4 +2292,34 @@ header {
 
 .section-title {
     animation: slideInLeft 0.8s ease;
+}/* Enhanced Footer Newsletter Styling */
+.footer-newsletter {
+    margin-bottom: 25px;
+}
+
+.footer-newsletter h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+
+.footer-newsletter p {
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* Input focus state */
+.footer-subscribe input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(10, 12, 144, 0.2);
+}
+
+/* Button hover state */
+.footer-subscribe button:hover {
+    background-color: #080a70;
+    transform: translateY(-2px);
 }

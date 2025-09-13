@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Responsive Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .test-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .screen-size-indicator {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .screen-size-indicator:after {
+                content: "Medium Screen (< 768px)";
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .screen-size-indicator:after {
+                content: "Small Screen (< 576px)";
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .screen-size-indicator:after {
+                content: "Large Screen (> 768px)";
+            }
+        }
+        
+        .footer-section {
+            background-color: #121212;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">Newsletter Responsive Test</h1>
+        
+        <div class="screen-size-indicator"></div>
+        
+        <div class="footer-section">
+            <div class="footer-column">
+                <div class="footer-newsletter">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <p>Stay updated with our latest trends and fashion tips.</p>
+                    <div class="footer-subscribe">
+                        <input type="email" placeholder="Your email address">
+                        <button>→</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple script to update screen width in real-time
+        const updateScreenSize = () => {
+            document.querySelector('.test-title').textContent = 
+                `Newsletter Responsive Test (Width: ${window.innerWidth}px)`;
+        };
+        
+        window.addEventListener('resize', updateScreenSize);
+        updateScreenSize();
+    </script>
+</body>
+</html>
