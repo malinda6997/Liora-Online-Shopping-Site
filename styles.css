@@ -1649,6 +1649,26 @@ header {
         border-radius: 12px;
     }
     
+    /* Fix for footer newsletter in mobile view */
+    .footer-subscribe {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .footer-subscribe input {
+        width: 100%;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 12px 15px;
+        height: 45px;
+    }
+    
+    .footer-subscribe button {
+        width: 100%;
+        border-radius: 6px;
+        height: 45px;
+    }
+    
     .offer-content h2 {
         font-size: 28px;
     }

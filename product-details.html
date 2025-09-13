@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casual Linen Shirt - Liora</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Product Details Specific Styles */
+        .product-details-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .product-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Product Gallery */
+        .product-gallery {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 6px;
+            overflow: hidden;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail.active {
+            opacity: 1;
+            border-color: #ff6b6b;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .thumbnail:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Product Info */
+        .product-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: fadeInLeft 0.7s ease-out;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin: 15px 0;
+            font-weight: 600;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+        
+        .product-description {
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #555;
+            animation: fadeInLeft 0.9s ease-out;
+        }
+        
+        .color-options {
+            margin-bottom: 25px;
+            animation: fadeInLeft 1s ease-out;
+        }
+        
+        .color-options h3 {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .color-select {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .color-option.active {
+            transform: scale(1.15);
+            border-color: #333;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-beige {
+            background-color: #f5f5dc;
+        }
+        
+        .color-blue {
+            background-color: #3498db;
+        }
+        
+        .color-green {
+            background-color: #2ecc71;
+        }
+        
+        .size-options {
+            margin-bottom: 25px;
+            animation: fadeInLeft 1.1s ease-out;
+        }
+        
+        .size-options h3 {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .size-select {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .size-option {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .size-option.active {
+            background-color: #333;
+            color: white;
+            border-color: #333;
+        }
+        
+        .size-option:hover:not(.active) {
+            border-color: #333;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            animation: fadeInLeft 1.2s ease-out;
+        }
+        
+        .quantity-selector h3 {
+            margin-right: 20px;
+            font-size: 1rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .quantity-input {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            padding: 10px 15px;
+            background: #f9f9f9;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background: #eee;
+        }
+        
+        .quantity-input input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            padding: 10px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        
+        .quantity-input input::-webkit-outer-spin-button,
+        .quantity-input input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            animation: fadeInLeft 1.3s ease-out;
+        }
+        
+        .action-buttons .btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-add-cart {
+            background: linear-gradient(45deg, #0a0c90, #3a3cae);
+            color: white;
+            border: none;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(10, 12, 144, 0.3);
+            transition: all 0.3s ease;
+            border-radius: 30px;
+        }
+        
+        .btn-add-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #3a3cae, #0a0c90);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-add-cart:hover {
+            background: linear-gradient(45deg, #0a0c90, #3a3cae);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 7px 20px rgba(10, 12, 144, 0.4);
+            letter-spacing: 0.7px;
+        }
+        
+        .btn-add-cart:hover::before {
+            left: 0;
+        }
+        
+        .btn-add-cart i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-add-cart:hover i {
+            transform: rotate(360deg);
+        }
+        
+        /* Added state for Add to Cart button */
+        .btn-add-cart.added {
+            background: linear-gradient(45deg, #2ecc71, #27ae60) !important;
+            transform: scale(1.05);
+            box-shadow: 0 7px 20px rgba(46, 204, 113, 0.4) !important;
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .btn-wishlist {
+            background-color: transparent;
+            border: 1px solid #ddd;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+        }
+        
+        .btn-wishlist:hover {
+            background-color: #f9f9f9;
+            border-color: #ccc;
+        }
+        
+        .product-meta {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9rem;
+            animation: fadeInUp 1.4s ease-out;
+        }
+        
+        .product-meta p {
+            margin-bottom: 5px;
+        }
+        
+        .product-features {
+            margin-top: 25px;
+            animation: fadeInLeft 1.2s ease-out;
+        }
+        
+        .product-features h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .features-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .features-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            color: #555;
+        }
+        
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        /* Related Products */
+        .related-products {
+            margin: 80px 0;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .related-products h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-size: 2rem;
+        }
+        
+        .related-products h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+        
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .breadcrumb {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .breadcrumb a:hover {
+            color: #ff6b6b;
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 10px;
+            color: #ccc;
+        }
+        
+        .breadcrumb .current {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* Image zoom effect */
+        .main-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Cart confirmation animation */
+        .cart-confirmation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 576px) {
+            .cart-confirmation {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                padding: 12px 20px;
+                width: calc(100% - 40px);
+                justify-content: center;
+            }
+        }
+        
+        .cart-confirmation i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: bounceIn 0.6s;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        
+        .cart-confirmation.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar"></div>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/Logo.png" alt="Liora Logo" class="logo">
+        </div>
+        <div class="menu-toggle">
+            <img src="assets/menu.png" alt="Menu" class="menu-icon">
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#new-arrivals">New Arrivals</a></li>
+                <li class="dropdown">
+                    <a href="#" class="active">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="index.html#mens" class="active">Men's Collection</a>
+                        <a href="index.html#womens">Women's Collection</a>
+                        <a href="index.html#kids">Kids' Collection</a>
+                    </div>
+                </li>
+                <li><a href="index.html#promotions">Promotions</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <a href="#search"><i class="fas fa-search"></i></a>
+            <a href="#account"><i class="fas fa-user"></i></a>
+            <a href="#cart"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        </div>
+    </header>
+
+    <!-- Product Details Section -->
+    <section class="product-details-container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator">/</span>
+            <a href="index.html#mens">Men's Collection</a>
+            <span class="separator">/</span>
+            <span class="current">Casual Linen Shirt</span>
+        </div>
+
+        <div class="product-details-grid">
+            <div class="product-gallery animate-on-scroll" data-animation="fadeInRight">
+                <div class="main-image">
+                    <img id="main-product-image" src="assets/mens/Product1.jpeg" alt="Casual Linen Shirt">
+                </div>
+                <div class="thumbnail-container">
+                    <div class="thumbnail active" data-image="assets/mens/Product1.jpeg">
+                        <img src="assets/mens/Product1.jpeg" alt="Casual Linen Shirt - Beige">
+                    </div>
+                    <div class="thumbnail" data-image="assets/Product(Mens)/Product1.jpeg">
+                        <img src="assets/Product(Mens)/Product1.jpeg" alt="Casual Linen Shirt - Blue">
+                    </div>
+                    <div class="thumbnail" data-image="assets/Product(Mens)/Product1,1.jpeg">
+                        <img src="assets/Product(Mens)/Product1,1.jpeg" alt="Casual Linen Shirt - Green">
+                    </div>
+                    <div class="thumbnail" data-image="assets/Product(Mens)/Product1,2.jpeg">
+                        <img src="assets/Product(Mens)/Product1,2.jpeg" alt="Casual Linen Shirt - Model View">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1>Casual Linen Shirt</h1>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>(4.5)</span>
+                </div>
+                <div class="product-price">
+                    <span class="original-price">$59.99</span>
+                    <span class="price">$47.99</span>
+                    <span class="discount-label">20% OFF</span>
+                </div>
+                <p class="product-description">
+                    Premium quality casual linen shirt, perfect for summer days. Breathable fabric that keeps you cool and comfortable. Features a modern fit with attention to detail and premium quality stitching.
+                </p>
+
+                <div class="product-features">
+                    <h3>Features</h3>
+                    <ul class="features-list">
+                        <li>100% premium linen fabric</li>
+                        <li>Breathable and lightweight</li>
+                        <li>Modern regular fit</li>
+                        <li>Machine washable</li>
+                        <li>Available in multiple colors</li>
+                    </ul>
+                </div>
+
+                <div class="color-options">
+                    <h3>Color</h3>
+                    <div class="color-select">
+                        <div class="color-option color-beige active" data-color="beige" data-image="assets/mens/Product1.jpeg"></div>
+                        <div class="color-option color-blue" data-color="blue" data-image="assets/Product(Mens)/Product1.jpeg"></div>
+                        <div class="color-option color-green" data-color="green" data-image="assets/Product(Mens)/Product1,1.jpeg"></div>
+                    </div>
+                </div>
+
+                <div class="size-options">
+                    <h3>Size</h3>
+                    <div class="size-select">
+                        <div class="size-option" data-size="S">S</div>
+                        <div class="size-option active" data-size="M">M</div>
+                        <div class="size-option" data-size="L">L</div>
+                        <div class="size-option" data-size="XL">XL</div>
+                        <div class="size-option" data-size="XXL">XXL</div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <h3>Quantity</h3>
+                    <div class="quantity-input">
+                        <button class="quantity-btn decrease">-</button>
+                        <input type="number" value="1" min="1" max="10">
+                        <button class="quantity-btn increase">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-add-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-wishlist">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+
+                <div class="product-meta">
+                    <p><strong>SKU:</strong> MS-LINEN-001</p>
+                    <p><strong>Category:</strong> Men's Fashion, Shirts</p>
+                    <p><strong>Tags:</strong> Linen, Summer, Casual, Men</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="products-grid">
+                <div class="product-card animate-on-scroll" data-animation="fadeInUp">
+                    <div class="product-image">
+                        <img src="assets/mens/Product2.jpeg" alt="Business Formal Shirt">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Business Formal Shirt</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$54.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                    <div class="product-image">
+                        <img src="assets/mens/Product3.jpeg" alt="Sports Track Pants">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sports Track Pants</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(3.5)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$39.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.4s">
+                    <div class="product-image">
+                        <img src="assets/Product(Mens)/Product1,2.jpeg" alt="Designer Jacket">
+                        <div class="product-overlay">
+                            <a href="#" class="btn-view"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="#" class="btn-wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Jacket</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$89.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="modern-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <h2>LIORA</h2>
+                        <span class="tagline">ELEVATE YOUR STYLE</span>
+                    </div>
+                    <p>Discover the latest trends in fashion with premium quality clothing for everyone.</p>
+                    <div class="footer-newsletter">
+                        <h4>Get Updates & More</h4>
+                        <form class="footer-subscribe">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="footer-nav-container">
+                    <div class="footer-nav">
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a href="index.html#new-arrivals">New Arrivals</a></li>
+                            <li><a href="index.html#mens">Men's Collection</a></li>
+                            <li><a href="index.html#womens">Women's Collection</a></li>
+                            <li><a href="index.html#kids">Kids' Collection</a></li>
+                            <li><a href="index.html#promotions">Sale</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-nav">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Shipping & Returns</a></li>
+                            <li><a href="#">Size Guide</a></li>
+                            <li><a href="#">Track Order</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-nav">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Corporate Responsibility</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-middle">
+            <div class="container">
+                <div class="store-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h5>Find Us</h5>
+                            <p>123 Fashion Street, City, Country</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h5>Call Us</h5>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h5>Email Us</h5>
+                            <p>info@liora.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="copyright">
+                    <p>&copy; 2025 Liora. All Rights Reserved.</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+                
+                <div class="payment-methods">
+                    <span>Payment Options:</span>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-apple-pay"></i>
+                    <i class="fab fa-google-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="product-details.js"></script>
+</body>
+</html>
